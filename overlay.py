@@ -44,6 +44,7 @@ def drawImageCluster(latMin, lonMin, latMax, lonMax, zoom):
 	fig.patch.set_facecolor('white')
 	ax.axis('off')
 	fig.tight_layout()
+	ax.set_aspect((ymax-ymin+1) / (xmax-xmin+1))
 	plt.imshow(np.asarray(a), extent=[extL, extR, extB, extT])
 
 	return a
