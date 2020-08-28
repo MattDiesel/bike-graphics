@@ -12,7 +12,7 @@ args = parser.parse_args()
 df = pd.read_csv(args.file, index_col='time', parse_dates=True)
 
 
-print("Distance: {0}km".format(df['s'].iat[-1]))
+print("Distance: {0:.2f}km".format(df['s'].iat[-1]))
 
 print("Moving Time: {0}".format(time.strftime('%H:%M:%S', time.gmtime(df['elapsed'].iat[-1]))))
 
@@ -20,7 +20,7 @@ time_series = df.index.to_series()
 print("Total Time: {0}".format(time_series.iat[-1] - time_series.iat[0]))
 
 
-# v = df['vel'].loc[np.equal(df['moving'], 1)]
+v = df['vel'].loc[np.equal(df['moving'], 1)]
 # print("Average Speed: {0:.2f}km/h".format(v.mean()))
 print("Average Speed: {0:.2f}km/h".format( df['s'].iat[-1] * 3600 / df['elapsed'].iat[-1] ))
 

@@ -10,6 +10,33 @@ $ gpx2csv.py MyRoute.gpx > MyRoute.csv
 
 Can then merge multiple CSV files together using `csvmerge.py`. 
 
+Get the summary data using stats.py:
+
+```
+$ stats.py MyRoute.csv
+Distance: 156.66082308282301km
+Moving Time: 06:52:20
+Total Time: 0 days 08:03:40
+Average Speed: 22.80km/h
+Max Speed: 69.07km/h
+Ascent: 1979m
+Descent: -1716m
+```
+
+Currently this differs slightly from the Strava stats for the same ride, which are:
+
+```
+Distance: 157.29km
+Moving Time: 06:54:19
+Total Time: 08:03:40
+Average Speed: 22.8km/h
+Max Speed: 67.0km/h
+Ascent: 2106m
+Descent: NA
+```
+
+## Plotting on a Map
+
 Next, work out the tiles required:
 
 ```
