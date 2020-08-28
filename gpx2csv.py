@@ -14,7 +14,7 @@ parser.add_argument('-o', '--output', help='Output csv file.')
 args = parser.parse_args()
 
 with open(args.file, 'r') as gpx_file:
-	gpx = gpxpy.parse(gpx_file)
+    gpx = gpxpy.parse(gpx_file)
 
 points = gpx.tracks[0].segments[0].points
 
@@ -22,11 +22,10 @@ df = pd.DataFrame.from_records(({'time' : pd.to_datetime(x.time), 'lon': x.longi
 
 df = gpxAnalyse(df)
 
-
 if not args.output:
-	df.to_csv(sys.stdout)
+    df.to_csv(sys.stdout)
 else:
-	df.to_csv(args.output)
+    df.to_csv(args.output)
 
 
 

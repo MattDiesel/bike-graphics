@@ -16,6 +16,6 @@ df = pd.concat([pd.read_csv(f, index_col='time', parse_dates=True) for f in args
 df.sort_index(inplace=True)
 
 if not args.output:
-	df.to_csv(sys.stdout)
+    df.to_csv(sys.stdout)
 else:
-	df.to_csv(args.output)
+    df.to_csv(args.output)

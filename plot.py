@@ -20,9 +20,9 @@ df[args.column + "'"] = np.convolve(df[args.column], np.ones(args.smooth * 2 + 1
 df.plot('elapsed', args.column + "'")
 
 if not args.output:
-	plt.show()
+    plt.show()
 else:
-	plt.savefig(args.output)
+    plt.savefig(args.output)
 
 
 
