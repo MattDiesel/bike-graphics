@@ -15,7 +15,11 @@ args = parser.parse_args()
 
 df = pd.read_csv(args.file, index_col='time', parse_dates=True)
 
-df[args.column + "'"] = np.convolve(df[args.column], np.ones(args.smooth * 2 + 1) / (args.smooth * 2 + 1), mode="same")
+d = df[args.column]
+df[args.column + "'"] = np.convolve( \
+    np.concatenate((np.ones(args.smooth)*d.iat[0], d, np.ones(args.smooth)*d.iat[-1])), \
+    np.ones(args.smooth * 2 + 1) / (args.smooth * 2 + 1), \
+    mode="valid")
 
 df.plot('elapsed', args.column + "'")
 
