@@ -35,6 +35,21 @@ Ascent: 2106m
 Descent: NA
 ```
 
+## Plotting Data
+
+Data can be plotted with gnuplot - there's a gpx.gp file to load in that defines some of the column indices and sets up gnuplot for the csv format:
+
+```
+gnuplot> load 'gpx.gp'
+gnuplot> plot 'MyRoute.csv' u c_elapsed:c_elev w l
+```
+
+`plot.py` uses matplotlib to produce results, currently only for a single column:
+
+```
+$ plot.py MyRoute.csv alt --smooth 50
+```
+
 ## Plotting on a Map
 
 Next, work out the tiles required:
