@@ -50,7 +50,7 @@ extL, extB = num2deg(xmax+1,ymax+1,args.zoom)
 
 
 
-cmds = """curl http://a.tile.openstreetmap.org/[{0}]/[{1}-{2}]/[{3}-{4}].png -o "tiles/#1/#2/#3.png" --create-dirs"""
+cmds = """curl http://a.tile.openstreetmap.org/{0}/[{1}-{2}]/[{3}-{4}].png -o "tiles/{0}/#1/#2.png" --create-dirs"""
 
 if args.coords:
     print("({0:.5f},{1:.5f}) - ({2:.5f},{3:.5f})".format(latMin, lonMin, latMax, lonMax))
