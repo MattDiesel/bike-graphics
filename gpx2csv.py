@@ -2,45 +2,31 @@ import gpxpy
 import pandas as pd
 import argparse
 import sys
+import datetime
+from gpxanalysis import *
 
 
-def gpxGetPoints(gpx):
-	return gpx.tracks[0].segments[0].points
-
-
-def gpxPointsToDataframe(points):
-	df = pd.DataFrame(columns=['lon', 'lat', 'alt', 'time'])
-	for point in points:
-		df = df.append({'time' : point.time, 'lon': point.longitude, 'lat' : point.latitude, 'alt' : point.elevation}, ignore_index=True)
-
-	return df
-
-def gpxLoadFile(f):
-	with open(f, 'r') as gpx_file:
-		gpx = gpxpy.parse(gpx_file)
-
-	return gpx
-
-
-def dfLoadGPX(f):
-	gpx = gpxLoadFile(f)
-	points = gpxGetPoints(gpx)
-	return gpxPointsToDataframe(points)
-
-
-parser = argparse.ArgumentParser(description='Create an image of a track overlayed on a map')
+parser = argparse.ArgumentParser(description='Convert a GPX file to CSV')
 
 parser.add_argument('file', help='GPX file to use')
 parser.add_argument('-o', '--output', help='Output csv file.')
 
 args = parser.parse_args()
 
-df = dfLoadGPX(args.file)
+with open(args.file, 'r') as gpx_file:
+	gpx = gpxpy.parse(gpx_file)
+
+points = gpx.tracks[0].segments[0].points
+
+df = pd.DataFrame.from_records(({'time' : pd.to_datetime(x.time), 'lon': x.longitude, 'lat' : x.latitude, 'alt' : x.elevation} for x in points), columns=['time', 'lon', 'lat', 'alt'], index='time')
+
+df = gpxAnalyse(df)
+
 
 if not args.output:
-	df.to_csv(sys.stdout, index=False)
+	df.to_csv(sys.stdout)
 else:
-	df.to_csv(args.output, index=False)
+	df.to_csv(args.output)
 
 
 
