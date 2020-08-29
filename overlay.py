@@ -32,7 +32,7 @@ def drawImageCluster(latMin, lonMin, latMax, lonMax, zoom):
 			tf = "tiles/{0}/{1}/{2}.png".format(zoom,xtile,ytile)
 			try:
 				tile = Image.open(tf)
-				a.paste(tile, box=((xtile-xmin)*256 ,  (ytile-ymin)*255))
+				a.paste(tile, box=((xtile-xmin)*256 ,  (ytile-ymin)*256))
 			except: 
 				print("Missing: {0}".format(tf))
 				tile = None
