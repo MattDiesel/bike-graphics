@@ -4,7 +4,7 @@ import argparse
 import sys
 from gpxanalysis import *
 
-parser = argparse.ArgumentParser(description='Create an image of a track overlayed on a map')
+parser = argparse.ArgumentParser(description='Merge CSV files.')
 
 parser.add_argument('files', help='GPX file to use', nargs='+')
 parser.add_argument('-o', '--output', help='Output csv file.')
