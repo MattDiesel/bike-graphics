@@ -8,13 +8,13 @@ First step: convert GPX files to CSV:
 $ gpx2csv.py MyRoute.gpx > MyRoute.csv
 ```
 
-Can then merge multiple CSV files together using `csvmerge.py`. 
+Multiple gpx files can be listed in the above command.
 
 Get the summary data using stats.py:
 
 ```
 $ stats.py MyRoute.csv
-Distance: 156.66082308282301km
+Distance: 156.66km
 Moving Time: 06:52:20
 Total Time: 0 days 08:03:40
 Average Speed: 22.80km/h
@@ -50,9 +50,17 @@ gnuplot> plot 'MyRoute.csv' u c_elapsed:c_elev w l
 $ plot.py MyRoute.csv alt --smooth 50
 ```
 
-## Plotting on a Map
+## Plotting on a Map (Folium)
 
-Next, work out the tiles required:
+```
+$ fol.py MyRoute.csv -o test.html
+$ xdg-open test.html
+```
+
+
+## Plotting on a Map (Matplotlib)
+
+Work out the tiles required:
 
 ```
 $ tiles.py MyRoute.csv
